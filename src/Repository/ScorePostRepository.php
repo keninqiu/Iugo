@@ -8,6 +8,9 @@ use Models\ScorePost;
 class ScorePostRepository extends AbstractRepository{
 
     public function resetByUserId($userId) {
+    	/*
+    	remove all records with specific $userId
+    	*/
         $sql = '
             delete from score_post where user_id = :userId
         ';
@@ -17,6 +20,9 @@ class ScorePostRepository extends AbstractRepository{
     }
 
     public function resetByLeaderboardId($leaderboardId) {
+    	/*
+    	remove all records with specific $leaderboardId
+    	*/    	
         $sql = '
             delete from score_post where leaderboard_id = :leaderboardId
         ';
@@ -26,6 +32,9 @@ class ScorePostRepository extends AbstractRepository{
     }
 
 	public function getRank($userId,$leaderboardId) {
+    	/*
+    	get the rank of specific user in the $leaderboard
+    	*/ 		
         $stmt = $this->connection->prepare('
             SELECT * 
              FROM score_post 
@@ -81,6 +90,9 @@ class ScorePostRepository extends AbstractRepository{
 
     public function save(ScorePost $scorePost)
     {
+    	/*
+    	save scorePost into database
+    	*/
         $stmt = $this->connection->prepare('
             INSERT INTO score_post 
                 (user_id, leaderboard_id, score) 
@@ -95,6 +107,9 @@ class ScorePostRepository extends AbstractRepository{
 
     public function update(ScorePost $scorePost)
     {
+    	/*
+    	update scorePost 
+    	*/    	
         $stmt = $this->connection->prepare('
             UPDATE score_post 
             SET score = :score

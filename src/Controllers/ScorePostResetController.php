@@ -10,7 +10,9 @@ use Models\ScorePost;
 use Repository\ScorePostRepository;
 
 class ScorePostResetController extends AbstractController {
-
+        /*
+        method for ScorePostReset endpoint
+        */ 
     protected function actionPost() {
         $data = $this->data;
 

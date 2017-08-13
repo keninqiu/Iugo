@@ -12,6 +12,9 @@ use Repository\UserSettingRepository;
 class UserSaveController extends AbstractController {
 
     private function arrToOne($multi,$key_prefix="") { 
+        /*
+        convert Multidimensional array into One-dimensional array
+        */          
         $arr = array(); 
         foreach ($multi as $key => $val) {
             if( is_array($val) ) { 
@@ -24,6 +27,10 @@ class UserSaveController extends AbstractController {
         return $arr; 
     } 
     protected function actionPost() {
+        /*
+        method for UserSave endpoint
+        */    
+
         $data = $this->data;
 
         if(

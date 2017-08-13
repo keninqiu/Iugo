@@ -5,7 +5,9 @@ require_once __DIR__ . "/../Settings/Config.php";
 use Settings\Config;
 
 class Transaction {
-
+        /*
+        Model for table transaction
+        */  
 	public $transactionId;
 	public $userId;
 	public $currencyAmount;

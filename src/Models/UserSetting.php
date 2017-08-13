@@ -2,7 +2,9 @@
 namespace Models;
 
 class UserSetting {
-
+        /*
+        Model for table user_setting
+        */  
 	public $userId;
 	public $dataKey;
 	public $dataValue;

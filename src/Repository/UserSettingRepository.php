@@ -8,6 +8,9 @@ use Models\UserSetting;
 class UserSettingRepository extends AbstractRepository {
 
     public function resetByUserId($userId) {
+        /*
+        remove all records with specific $userId
+        */         
         $sql = '
             delete from user_setting where user_id = :userId
         ';
@@ -54,6 +57,9 @@ class UserSettingRepository extends AbstractRepository {
 
     public function save(UserSetting $userSetting)
     {
+        /*
+        save UserSetting into database
+        */        
         $stmt = $this->connection->prepare('
             INSERT INTO user_setting 
                 (user_id, data_key, data_value) 
@@ -68,6 +74,9 @@ class UserSettingRepository extends AbstractRepository {
 
     public function update(UserSetting $userSetting)
     {
+        /*
+        update UserSetting
+        */          
         $stmt = $this->connection->prepare('
             UPDATE user_setting 
             SET data_value = :dataValue

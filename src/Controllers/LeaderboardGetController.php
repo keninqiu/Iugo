@@ -12,6 +12,9 @@ use Repository\ScorePostRepository;
 class LeaderboardGetController extends AbstractController {
 
     protected function actionPost() {
+        /*
+        method for LeaderboardGet endpoint
+        */
         $data = $this->data;
 
         if(

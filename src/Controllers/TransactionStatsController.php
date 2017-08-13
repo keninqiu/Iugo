@@ -12,6 +12,9 @@ use Repository\TransactionRepository;
 class TransactionStatsController extends AbstractController {
 
     protected function actionPost() {
+        /*
+        method for TransactionStats endpoint
+        */         
         $data = $this->data;
 
         if(

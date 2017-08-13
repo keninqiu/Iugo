@@ -27,6 +27,9 @@ class TransactionRepository extends AbstractRepository{
     }
 
     public function resetByUserId($userId) {
+    	/*
+    	remove all records with specific $userId
+    	*/    	
         $sql = '
             delete from transaction where user_id = :userId
         ';
@@ -36,6 +39,9 @@ class TransactionRepository extends AbstractRepository{
     }
 
     public function resetByTransactionId($transactionId) {
+    	/*
+    	remove all records with specific $transactionId
+    	*/     	
         $sql = '
             delete from transaction where id = :transactionId
         ';
@@ -61,7 +67,9 @@ class TransactionRepository extends AbstractRepository{
 
     public function save(Transaction $transaction)
     {
-
+    	/*
+    	save transaction into database
+    	*/
         $sql = '
             INSERT INTO transaction 
                 (id, user_id, currency_amount) 

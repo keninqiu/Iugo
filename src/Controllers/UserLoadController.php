@@ -11,19 +11,11 @@ use Repository\UserSettingRepository;
 
 class UserLoadController extends AbstractController {
 
-    private function arrToOne($multi,$key_prefix="") { 
-        $arr = array(); 
-        foreach ($multi as $key => $val) {
-            if( is_array($val) ) { 
-                $arr = array_merge($arr, self::arrToOne($val,$key_prefix.".".$key)); 
-            } else { //phpfensi.com 
-                $comboKey = $key_prefix.".".$key;
-                $arr[$comboKey] = $val; 
-            } 
-        } 
-        return $arr; 
-    } 
     protected function actionPost() {
+        /*
+        method for UserLoad endpoint
+        */  
+
         $data = $this->data;
 
         if(

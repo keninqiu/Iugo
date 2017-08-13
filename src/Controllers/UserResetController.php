@@ -12,6 +12,9 @@ use Repository\UserSettingRepository;
 class UserResetController extends AbstractController {
 
     protected function actionPost() {
+        /*
+        method for UserReset endpoint
+        */         
         $data = $this->data;
 
         if(

@@ -12,9 +12,11 @@ use Repository\TransactionRepository;
 class TransactionResetController extends AbstractController {
 
     protected function actionPost() {
+        /*
+        method for TransactionReset endpoint
+        */         
         $data = $this->data;
 
-        //echo "data=".json_encode($data);
         if(
             !$data 
             || (!isset($data["UserId"]) && !isset($data["TransactionId"]))

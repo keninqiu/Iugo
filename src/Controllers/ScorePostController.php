@@ -12,6 +12,9 @@ use Repository\ScorePostRepository;
 class ScorePostController extends AbstractController {
 
     protected function actionPost() {
+        /*
+        method for ScorePost endpoint
+        */        
         $data = $this->data;
 
         if(

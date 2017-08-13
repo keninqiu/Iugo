@@ -2,7 +2,9 @@
 namespace Models;
 
 class ScorePost {
-
+        /*
+        Model for table score_post
+        */  
 	public $userId;
 	public $leaderboardId;
 	public $score;
