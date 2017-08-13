@@ -5,5 +5,6 @@ class HttpMethod {
 	const GET = "GET";	
 	const PUT = "PUT";	
 	const DELETE = "DELETE";
+	const PATCH = "PATCH";
 	const UNSUPPORTED = "UNSUPPORTED";
 }

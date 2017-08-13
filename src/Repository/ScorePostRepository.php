@@ -7,6 +7,24 @@ use \PDO;
 use Models\ScorePost;
 class ScorePostRepository extends AbstractRepository{
 
+    public function resetByUserId($userId) {
+        $sql = '
+            delete from score_post where user_id = :userId
+        ';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
+        return $stmt->execute();
+    }
+
+    public function resetByLeaderboardId($leaderboardId) {
+        $sql = '
+            delete from score_post where leaderboard_id = :leaderboardId
+        ';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':leaderboardId', $leaderboardId);
+        return $stmt->execute();
+    }
+
 	public function getRank($userId,$leaderboardId) {
         $stmt = $this->connection->prepare('
             SELECT * 

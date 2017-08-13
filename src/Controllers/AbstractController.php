@@ -14,9 +14,6 @@ class AbstractController {
 	public function actionJson() {
 		$response = [];
 		switch($this->method) {
-			case self::METHOD_GET:
-				$response = $this->actionGet();
-				break;
 			case self::METHOD_POST:
 				$response = $this->actionPost();
 				break;				

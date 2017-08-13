@@ -26,6 +26,24 @@ class TransactionRepository extends AbstractRepository{
         
     }
 
+    public function resetByUserId($userId) {
+        $sql = '
+            delete from transaction where user_id = :userId
+        ';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
+        return $stmt->execute();
+    }
+
+    public function resetByTransactionId($transactionId) {
+        $sql = '
+            delete from transaction where id = :transactionId
+        ';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':transactionId', $transactionId);
+        return $stmt->execute();
+    }
+
     public function findAllByUserId($userId) {
         // findAllByUserId() will do the same as above, but we'll have an array. ie:
         //    $transactions = $repository->findAllByUserId();

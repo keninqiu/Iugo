@@ -7,6 +7,15 @@ use \PDO;
 use Models\UserSetting;
 class UserSettingRepository extends AbstractRepository {
 
+    public function resetByUserId($userId) {
+        $sql = '
+            delete from user_setting where user_id = :userId
+        ';
+        $stmt = $this->connection->prepare($sql);
+        $stmt->bindParam(':userId', $userId);
+        return $stmt->execute();
+    }
+
     public function findByKey($userId,$dataKey)
     {
         // Set the fetchmode to populate an instance of 'Transaction'
