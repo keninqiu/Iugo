@@ -75,7 +75,10 @@ class IugoApi
         generate output with data and status, if status is not provided, it will be 200 as default
         */        
         header("HTTP/1.1 " . $status . " " . $this->_requestStatus($status));
-        return json_encode($data, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP >= 5.4
+        if($data) {
+            return json_encode($data, JSON_PRETTY_PRINT); // JSON_PRETTY_PRINT only works in PHP >= 5.4
+        }
+        return '{}';
     }
 
 

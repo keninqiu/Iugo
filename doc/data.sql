@@ -1,4 +1,5 @@
-create database if not EXISTS `iugo`;
+drop database iugo;
+create database `iugo`;
 use `iugo`;
 
 CREATE TABLE IF NOT EXISTS `transaction`(
@@ -17,7 +18,7 @@ CREATE TABLE IF NOT EXISTS `score_post`(
 
 CREATE TABLE IF NOT EXISTS `user_setting` (
   user_id INT NOT NULL,
-  data_key varchar(1000) NOT NULL,
-  data_value VARCHAR(500),
+  data_key varchar(500) NOT NULL,
+  data_value VARCHAR(100),
   PRIMARY KEY (user_id,data_key)
 );
