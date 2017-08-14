@@ -39,6 +39,9 @@ class UserSettingRepository extends AbstractRepository {
         
     }
 
+    private function is_int_val($value){
+        return (string) $value === (string) ((integer) $value);
+    }
     public function getAllByUserId($userId)
     {
         // fetchAll() will do the same as above, but we'll have an array. ie:
@@ -52,7 +55,17 @@ class UserSettingRepository extends AbstractRepository {
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'UserSetting');
 
-        return $stmt->fetchAll();
+        $allRecords = $stmt->fetchAll();
+        $ret = [];
+        foreach($allRecords as $item) {
+            $key = $item["data_key"];
+            $value = $item["data_value"];
+            if(self::is_int_val($value)) {
+                $value = intval($value);
+            }
+            $ret[$key] = $value;
+        }
+        return $ret;
     }
 
     public function save(UserSetting $userSetting)

@@ -8,6 +8,7 @@ class Config {
 	const DB_NAME = "iugo";
 	const DB_USER = "root";
 	const DB_PASS = "mysql";
+	const BASE_URL = "http://test";
 	public static function getSecretKey() {
 		return "NwvprhfBkGuPJnjJp77UPJWJUpgC7mLz";
 	}

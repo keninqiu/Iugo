@@ -11,6 +11,41 @@ use Repository\UserSettingRepository;
 
 class UserLoadController extends AbstractController {
 
+
+    private function convert2TreeArray($array) {
+        $newArray = [];
+        foreach($array as $key => $value) {
+            if(count(explode(".", $key)) == 1) {
+                $newArray[$key] = $value;
+            }
+            else {
+
+                list($before, $after) = explode('.', $key, 2);
+
+                if($before && $after) {
+                    if(!isset($newArray[$before])) {
+                        $newArray[$before] = [$after => $value];
+                    }
+                    else {
+                        $newArray[$before][$after] = $value;
+                    }
+                }
+            }
+        }
+        $retArray = [];
+        foreach($newArray as $key => $value) {
+            if($key && $value) {
+                if(is_array($value)) {
+                    $retArray[$key] = self::convert2TreeArray($value);
+                }
+                else {
+                    $retArray[$key] = $value;
+                }
+            }
+        }
+        return $retArray;
+    }
+
     protected function actionPost() {
         /*
         method for UserLoad endpoint
@@ -42,36 +77,7 @@ class UserLoadController extends AbstractController {
         $userSettingRepository = new UserSettingRepository();
         $userSettings = $userSettingRepository->getAllByUserId($userId);
 
-        $response = [];
-
-        foreach($userSettings as $userSetting) {
-            $dataKey = $userSetting["data_key"];
-            $dataValue = $userSetting["data_value"];
-            $dataValue = is_int($dataValue) ? intval($dataValue) : $dataValue;
-            $dataKeyArray = explode(".", $dataKey);
-            $arr = [];
-            $i=0;
-            for($i=count($dataKeyArray)-1;$i>0;$i--) {
-
-                $arr[$dataKeyArray[$i]] = $dataValue;
-                $dataValue = $arr;
-                if($i == 1) {
-                    break;
-                }
-                $arr = [];
-            }
-            $key = key($arr);
-            if(isset($response[$key])) {
-                $response[$key] = [
-                    $response[$key],
-                    $arr[$key]
-                ];
-            }
-            else {
-                $response[$key] = $arr[$key];
-            }
-            
-        }
+        $response = self::convert2TreeArray($userSettings);
 
         return $response;      
     }

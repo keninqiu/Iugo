@@ -18,9 +18,20 @@ class UserSaveController extends AbstractController {
         $arr = array(); 
         foreach ($multi as $key => $val) {
             if( is_array($val) ) { 
-                $arr = array_merge($arr, self::arrToOne($val,$key_prefix.".".$key)); 
+                if($key_prefix) {
+                   $comboKey = $key_prefix.".".$key; 
+                }
+                else {
+                    $comboKey = $key; 
+                }                
+                $arr = array_merge($arr, self::arrToOne($val,$comboKey)); 
             } else { //phpfensi.com 
-                $comboKey = $key_prefix.".".$key;
+                if($key_prefix) {
+                   $comboKey = $key_prefix.".".$key; 
+                }
+                else {
+                    $comboKey = $key; 
+                }
                 $arr[$comboKey] = $val; 
             } 
         } 
